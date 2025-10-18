@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worker Dashboard - fixUP</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+     <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>fix<span>UP</span></h2>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Dashboard</a>
+                <a href="worker-profile-edit.html" class="nav-link">My Profile</a>
+                <a href="worker-jobs.html" class="nav-link">Jobs</a>
+                <a href="../index.html" class="nav-link">Logout</a>
+                <a href="#" class="nav-link" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="worker-container">
+        <!-- Welcome & Stats -->
+        <div class="worker-header">
+            <div class="welcome-card">
+                <h1>Welcome back, <span id="workerName">Alex Carpenter</span>! 👋</h1>
+                <p>Ready to find your next project?</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <h3 id="totalEarnings">2000Rs</h3>
+                        <p>Total Earnings</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <h3 id="completedJobs">24</h3>
+                        <p>Jobs Completed</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-info">
+                        <h3 id="workerRating">4.8</h3>
+                        <p>Your Rating</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔄</div>
+                    <div class="stat-info">
+                        <h3 id="pendingJobs">3</h3>
+                        <p>Pending Requests</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="worker-content">
+            <!-- Left Column - Job Requests -->
+            <div class="job-requests">
+                <h2>📨 New Job Requests</h2>
+                <div class="requests-list" id="requestsList">
+                    <!-- Job requests will be loaded by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Right Column - Quick Actions & Profile -->
+            <div class="worker-sidebar">
+                <!-- Quick Actions -->
+                <div class="action-card">
+                    <h3>🚀 Quick Actions</h3>
+                    <button class="action-btn" onclick="updateProfile()">Update Profile</button>
+                    <button class="action-btn" onclick="addPortfolio()">Add Portfolio Item</button>
+                    <button class="action-btn" onclick="setAvailability()">Set Availability</button>
+                </div>
+
+                <!-- Profile Completeness -->
+                <div class="profile-card">
+                    <h3>📊 Profile Strength</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                    <p>75% Complete</p>
+                    <button class="complete-btn" onclick="completeProfile()">Complete Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/worker-script.js"></script>
+    <script src="../js/[PAGE-SPECIFIC-SCRIPT].js"></script>
+<script>
+    function logout() {
+        localStorage.removeItem('fixUP_user');
+        window.location.href = '../index.html';
+    }
+    
+    // Check authentication on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const user = localStorage.getItem('fixUP_user');
+        if (!user) {
+            window.location.href = 'login.html';
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - fixUP</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>fix<span>UP</span></h2>
+            </div>
+            <div class="nav-links">
+                <a href="user-home.html" class="nav-link">Home</a>
+                <a href="my-bookings.html" class="nav-link">My Bookings</a>
+                <a href="#" class="nav-link active">Messages</a>
+                <a href="#" class="nav-link" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="chat-list-container">
+        <div class="chat-list-header">
+            <h1>💬 Messages</h1>
+            <p>Communicate with your service professionals</p>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="searchChats" placeholder="🔍 Search conversations..." class="search-input">
+            </div>
+        </div>
+
+        <!-- Conversations List -->
+        <div class="conversations-list" id="conversationsList">
+            <!-- Conversations will be loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+            <div class="empty-icon">💬</div>
+            <h3>No messages yet</h3>
+            <p>When you book a service or receive messages, they'll appear here</p>
+            <a href="user-home.html" class="btn-primary">Find Services</a>
+        </div>
+    </div>
+
+    <script src="../js/chat-list-script.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('fixUP_user');
+            window.location.href = '../index.html';
+        }
+        
+        // Check authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = localStorage.getItem('fixUP_user');
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>

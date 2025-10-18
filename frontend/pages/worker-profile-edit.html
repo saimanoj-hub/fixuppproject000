@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - fixUP</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>fix<span>UP</span></h2>
+            </div>
+            <div class="nav-links">
+                <a href="worker-home.html" class="nav-link">Dashboard</a>
+                <a href="#" class="nav-link active">My Profile</a>
+                <a href="worker-jobs.html" class="nav-link">Jobs</a>
+                <a href="#" class="nav-link" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="profile-edit-container">
+        <div class="profile-edit-header">
+            <h1>Edit Your Profile 🛠️</h1>
+            <p>Complete your profile to get more job opportunities</p>
+            
+            <!-- Progress Bar -->
+            <div class="profile-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="profileProgress" style="width: 60%"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progressPercent">60%</span> Complete
+                </div>
+            </div>
+        </div>
+
+        <form class="profile-edit-form" id="profileEditForm" onsubmit="handleProfileSave(event)">
+            
+            <!-- Basic Information -->
+            <div class="form-section">
+                <h3>👤 Basic Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" value="Alex Carpenter" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" value="+1 (555) 123-4567" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tagline">Professional Tagline *</label>
+                    <input type="text" id="tagline" value="Master Carpenter with 15+ years experience" required>
+                    <div class="input-hint">This appears on your profile card</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bio">About You *</label>
+                    <textarea id="bio" rows="4" required>Specialized in custom furniture, cabinet making, and home renovations. I take pride in delivering high-quality craftsmanship with attention to detail. Let's bring your vision to life!</textarea>
+                    <div class="char-count"><span id="bioCharCount">0</span>/500 characters</div>
+                </div>
+            </div>
+
+            <!-- Skills & Services -->
+            <div class="form-section">
+                <h3>🔧 Skills & Services</h3>
+                <div class="skills-section">
+                    <div class="skills-list" id="skillsList">
+                        <!-- Skills will be loaded here -->
+                    </div>
+                    
+                    <div class="add-skill-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="skillName">Skill/Service Name *</label>
+                                <input type="text" id="skillName" placeholder="e.g., Cabinet Installation">
+                            </div>
+                            <div class="form-group">
+                                <label for="skillExperience">Years of Experience *</label>
+                                <input type="number" id="skillExperience" placeholder="e.g., 5" min="0" max="50">
+                            </div>
+                            <div class="form-group">
+                                <label for="hourlyRate">Hourly Rate ($) *</label>
+                                <input type="number" id="hourlyRate" placeholder="e.g., 75" min="0">
+                            </div>
+                        </div>
+                        <button type="button" class="btn-secondary" onclick="addSkill()">+ Add Skill</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location & Availability -->
+            <div class="form-section">
+                <h3>📍 Location & Availability</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input type="text" id="city" value="New York" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceArea">Service Area (miles) *</label>
+                        <input type="number" id="serviceArea" value="25" min="1" max="100">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Availability</label>
+                    <div class="availability-options">
+                        <label class="availability-option">
+                            <input type="checkbox" name="availability" value="weekdays" checked>
+                            <span>Weekdays</span>
+                        </label>
+                        <label class="availability-option">
+                            <input type="checkbox" name="availability" value="weekends">
+                            <span>Weekends</span>
+                        </label>
+                        <label class="availability-option">
+                            <input type="checkbox" name="availability" value="emergency" checked>
+                            <span>Emergency Services</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portfolio -->
+            <div class="form-section">
+                <h3>📸 Portfolio</h3>
+                <p class="section-description">Showcase your best work with photos</p>
+                
+                <div class="portfolio-upload">
+                    <div class="upload-area" id="portfolioUploadArea">
+                        <div class="upload-icon">🖼️</div>
+                        <p>Click to upload portfolio images</p>
+                        <small>Show your completed projects</small>
+                        <input type="file" id="portfolioUpload" multiple accept="image/*" style="display: none;">
+                    </div>
+                    <div class="portfolio-grid" id="portfolioGrid">
+                        <!-- Portfolio items will load here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Verification -->
+            <div class="form-section">
+                <h3>✅ Verification</h3>
+                <div class="verification-section">
+                    <div class="verification-item">
+                        <div class="verification-info">
+                            <h4>ID Verification</h4>
+                            <p>Verify your identity with government ID</p>
+                            <span class="verification-status verified">✅ Verified</span>
+                        </div>
+                    </div>
+                    
+                    <div class="verification-item">
+                        <div class="verification-info">
+                            <h4>Background Check</h4>
+                            <p>Optional background verification</p>
+                            <span class="verification-status pending">⏳ Pending</span>
+                        </div>
+                        <button type="button" class="btn-secondary">Start Check</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="button" class="btn-secondary" onclick="previewProfile()">👁️ Preview</button>
+                <button type="submit" class="btn-primary">💾 Save Profile</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="../js/profile-edit-script.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('fixUP_user');
+            window.location.href = '../index.html';
+        }
+        
+        function previewProfile() {
+            window.location.href = 'worker-profile.html';
+        }
+        
+        // Check authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = localStorage.getItem('fixUP_user');
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>

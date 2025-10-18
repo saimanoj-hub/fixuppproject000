@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Jobs - fixUP</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>fix<span>UP</span></h2>
+            </div>
+            <div class="nav-links">
+                <a href="worker-home.html" class="nav-link">Dashboard</a>
+                <a href="worker-profile-edit.html" class="nav-link">My Profile</a>
+                <a href="#" class="nav-link active">Jobs</a>
+                <a href="#" class="nav-link" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="worker-jobs-container">
+        <!-- Header Stats -->
+        <div class="jobs-header-stats">
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-info">
+                    <h3 id="totalEarnings">$2,840</h3>
+                    <p>Total Earnings</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🔄</div>
+                <div class="stat-info">
+                    <h3 id="activeJobs">3</h3>
+                    <p>Active Jobs</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-info">
+                    <h3 id="completedJobs">24</h3>
+                    <p>Completed</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-info">
+                    <h3 id="avgRating">4.8</h3>
+                    <p>Avg Rating</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jobs Tabs -->
+        <div class="jobs-tabs-container">
+            <div class="jobs-tabs">
+                <button class="tab-btn active" onclick="showJobsTab('requests')">
+                    📨 Requests <span class="tab-badge" id="requestsCount">3</span>
+                </button>
+                <button class="tab-btn" onclick="showJobsTab('scheduled')">
+                    📅 Scheduled <span class="tab-badge" id="scheduledCount">2</span>
+                </button>
+                <button class="tab-btn" onclick="showJobsTab('active')">
+                    🔄 Active <span class="tab-badge" id="activeCount">1</span>
+                </button>
+                <button class="tab-btn" onclick="showJobsTab('completed')">
+                    ✅ Completed <span class="tab-badge" id="completedCount">24</span>
+                </button>
+                <button class="tab-btn" onclick="showJobsTab('earnings')">
+                    💰 Earnings
+                </button>
+            </div>
+
+            <!-- Job Requests Tab -->
+            <div class="tab-content active" id="requests">
+                <div class="jobs-list" id="requestsList">
+                    <!-- Job requests will load here -->
+                </div>
+            </div>
+
+            <!-- Scheduled Jobs Tab -->
+            <div class="tab-content" id="scheduled">
+                <div class="jobs-list" id="scheduledList">
+                    <!-- Scheduled jobs will load here -->
+                </div>
+            </div>
+
+            <!-- Active Jobs Tab -->
+            <div class="tab-content" id="active">
+                <div class="jobs-list" id="activeList">
+                    <!-- Active jobs will load here -->
+                </div>
+            </div>
+
+            <!-- Completed Jobs Tab -->
+            <div class="tab-content" id="completed">
+                <div class="jobs-list" id="completedList">
+                    <!-- Completed jobs will load here -->
+                </div>
+            </div>
+
+            <!-- Earnings Tab -->
+            <div class="tab-content" id="earnings">
+                <div class="earnings-content">
+                    <div class="earnings-header">
+                        <h3>💰 Earnings Overview</h3>
+                        <div class="time-filter">
+                            <select id="earningsPeriod" onchange="updateEarningsChart()">
+                                <option value="week">This Week</option>
+                                <option value="month" selected>This Month</option>
+                                <option value="quarter">This Quarter</option>
+                                <option value="year">This Year</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="earnings-stats">
+                        <div class="earnings-stat">
+                            <span class="stat-label">Total Earned</span>
+                            <span class="stat-value">$2,840</span>
+                        </div>
+                        <div class="earnings-stat">
+                            <span class="stat-label">Jobs Completed</span>
+                            <span class="stat-value">24</span>
+                        </div>
+                        <div class="earnings-stat">
+                            <span class="stat-label">Avg per Job</span>
+                            <span class="stat-value">$118</span>
+                        </div>
+                        <div class="earnings-stat">
+                            <span class="stat-label">Available for Payout</span>
+                            <span class="stat-value">$1,250</span>
+                        </div>
+                    </div>
+
+                    <div class="earnings-chart">
+                        <div class="chart-placeholder">
+                            <div class="chart-icon">📊</div>
+                            <p>Earnings chart will appear here</p>
+                            <small>Connect to backend to show real data</small>
+                        </div>
+                    </div>
+
+                    <div class="recent-transactions">
+                        <h4>Recent Transactions</h4>
+                        <div class="transactions-list" id="transactionsList">
+                            <!-- Transactions will load here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Details Modal -->
+    <div class="modal" id="jobModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Job Details</h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/worker-jobs-script.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('fixUP_user');
+            window.location.href = '../index.html';
+        }
+        
+        // Check authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = localStorage.getItem('fixUP_user');
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>
