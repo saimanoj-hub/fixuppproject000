@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed - fixUP</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>fix<span>UP</span></h2>
+            </div>
+            <div class="nav-links">
+                <a href="user-home.html" class="nav-link">Home</a>
+                <a href="my-bookings.html" class="nav-link">My Bookings</a>
+                <a href="post-job.html" class="nav-link">Post Job</a>
+                <a href="#" class="nav-link" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="confirmation-container">
+        <div class="confirmation-card">
+            <div class="confirmation-hero">
+                <div class="confirmation-icon">🎉</div>
+                <h1>Booking Confirmed!</h1>
+                <p class="confirmation-subtitle">Your service has been booked successfully</p>
+            </div>
+
+            <!-- Booking Summary -->
+            <div class="booking-summary">
+                <h3>📋 Booking Summary</h3>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <span class="summary-label">Service Professional</span>
+                        <span class="summary-value" id="workerName">Mike Carpenter</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Service Type</span>
+                        <span class="summary-value" id="serviceType">Furniture Repair</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Scheduled Date</span>
+                        <span class="summary-value" id="bookingDate">January 18, 2024</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Time</span>
+                        <span class="summary-value" id="bookingTime">Morning (8AM - 12PM)</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Location</span>
+                        <span class="summary-value" id="bookingLocation">123 Main St, Downtown</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Estimated Cost</span>
+                        <span class="summary-value price" id="bookingCost">$165</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h3>📝 What Happens Next?</h3>
+                <div class="steps-timeline">
+                    <div class="step-item current">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Confirmation Sent</h4>
+                            <p>We've notified the professional about your booking</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Professional Confirms</h4>
+                            <p>The professional will confirm availability within 2 hours</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Service Day</h4>
+                            <p>Get ready for your service appointment</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Payment & Review</h4>
+                            <p>Pay after service completion and leave a review</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h3>📞 Need Help?</h3>
+                <div class="contact-options">
+                    <div class="contact-option">
+                        <div class="contact-icon">💬</div>
+                        <div class="contact-details">
+                            <h4>Message the Professional</h4>
+                            <p>Chat directly with your service provider</p>
+                            <button class="contact-btn" onclick="messageProfessional()">Send Message</button>
+                        </div>
+                    </div>
+                    <div class="contact-option">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h4>Contact Support</h4>
+                            <p>Our team is here to help 24/7</p>
+                            <button class="contact-btn" onclick="contactSupport()">Get Help</button>
+                        </div>
+                    </div>
+                    <div class="contact-option">
+                        <div class="contact-icon">🔄</div>
+                        <div class="contact-details">
+                            <h4>Modify Booking</h4>
+                            <p>Need to reschedule or make changes?</p>
+                            <button class="contact-btn" onclick="modifyBooking()">Modify</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="confirmation-actions">
+                <a href="my-bookings.html" class="btn-primary">📋 View My Bookings</a>
+                <a href="user-home.html" class="btn-secondary">🏠 Back to Home</a>
+                <button class="btn-tertiary" onclick="shareBooking()">📤 Share Booking Details</button>
+            </div>
+
+            <!-- Important Notes -->
+            <div class="important-notes">
+                <h4>💡 Important Information</h4>
+                <ul>
+                    <li>You'll receive a confirmation email shortly</li>
+                    <li>The professional may contact you to confirm details</li>
+                    <li>Cancel at least 24 hours in advance for full refund</li>
+                    <li>Payment is only processed after service completion</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/confirmation-script.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('fixUP_user');
+            window.location.href = '../index.html';
+        }
+        
+        function messageProfessional() {
+            alert('💬 Opening chat with the professional...');
+        }
+        
+        function contactSupport() {
+            alert('📞 Contacting support team...');
+        }
+        
+        function modifyBooking() {
+            alert('🔄 Redirecting to booking modification...');
+        }
+        
+        function shareBooking() {
+            alert('📤 Sharing booking details...');
+        }
+    </script>
+</body>
+</html>

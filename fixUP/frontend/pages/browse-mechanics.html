@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Mechanics - fixUP</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="service-mechanic">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>fix<span>UP</span></h2>
+            </div>
+            <div class="nav-links">
+                <a href="user-home.html" class="nav-link">← Back to Home</a>
+                <a href="my-bookings.html" class="nav-link">My Bookings</a>
+                <a href="#" class="nav-link" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="service-browse-container">
+        <!-- Service Header -->
+        <div class="service-header">
+            <div class="service-hero">
+                <div class="service-icon">🔧</div>
+                <div class="service-info">
+                    <h1>Top Auto Mechanics</h1>
+                    <p>Certified mechanics for car repairs, maintenance, and diagnostics</p>
+                    <div class="service-stats">
+                        <span class="stat">🌟 4.6 Average Rating</span>
+                        <span class="stat">✅ 88% Completion Rate</span>
+                        <span class="stat">⚡ 3hr Average Response</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <button class="quick-btn" onclick="postMechanicJob()">
+                <span class="btn-icon">📝</span>
+                <span class="btn-text">Post Mechanic Job</span>
+            </button>
+            <button class="quick-btn" onclick="showEmergencyMechanics()">
+                <span class="btn-icon">🚨</span>
+                <span class="btn-text">Emergency Repair</span>
+            </button>
+            <button class="quick-btn" onclick="showMobileMechanics()">
+                <span class="btn-icon">🚗</span>
+                <span class="btn-text">Mobile Mechanics</span>
+            </button>
+        </div>
+
+        <!-- Filters & Search -->
+        <div class="filters-section">
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search mechanics by specialty..." id="searchInput">
+                <button class="search-btn">Search</button>
+            </div>
+            
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <label>Sort by:</label>
+                    <select class="filter-select" onchange="sortMechanics(this.value)">
+                        <option value="rating">Highest Rated</option>
+                        <option value="experience">Most Experienced</option>
+                        <option value="price">Best Price</option>
+                        <option value="distance">Nearest</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Price range:</label>
+                    <select class="filter-select" onchange="filterByPrice(this.value)">
+                        <option value="all">Any Price</option>
+                        <option value="60">Under $60/hr</option>
+                        <option value="120">$60-$120/hr</option>
+                        <option value="180">Over $120/hr</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Experience:</label>
+                    <select class="filter-select" onchange="filterByExperience(this.value)">
+                        <option value="all">Any Experience</option>
+                        <option value="5">5+ years</option>
+                        <option value="10">10+ years</option>
+                        <option value="15">15+ years</option>
+                    </select>
+                </div>
+                
+                <button class="filter-btn" onclick="toggleAdvancedFilters()">⚙️ More Filters</button>
+            </div>
+
+            <!-- Advanced Filters -->
+            <div class="advanced-filters" id="advancedFilters" style="display: none;">
+                <div class="filter-grid">
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="engine"> Engine Repair
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="brakes"> Brakes & Suspension
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="diagnostics"> Diagnostics
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="maintenance"> Maintenance
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="electrical"> Auto Electrical
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="ac"> AC Repair
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="availability" value="emergency"> Emergency Service
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="availability" value="mobile"> Mobile Service
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="availability" value="weekend"> Weekend Available
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="certification" value="certified"> Certified Only
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mechanics Grid -->
+        <div class="workers-grid" id="mechanicsGrid">
+            <!-- Mechanics will be loaded here -->
+        </div>
+
+        <!-- Load More -->
+        <div class="load-more-section">
+            <button class="load-more-btn" onclick="loadMoreMechanics()">
+                Load More Mechanics
+            </button>
+        </div>
+    </div>
+    <!-- Floating Message Button -->
+<div class="floating-message-btn" onclick="goToMessages()">
+    💬
+</div>
+
+<style>
+.floating-message-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--primary-gradient);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.floating-message-btn:hover {
+    transform: scale(1.1);
+}
+</style>
+
+<script>
+function goToMessages() {
+    window.location.href = 'chat-list.html';
+}
+</script>
+
+    <script src="../js/mechanics-script.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('fixUP_user');
+            window.location.href = '../index.html';
+        }
+        
+        function postMechanicJob() {
+            window.location.href = 'post-job.html?service=mechanic';
+        }
+        
+        function showEmergencyMechanics() {
+            alert('🚨 Showing mechanics available for emergency repairs!');
+        }
+        
+        function showMobileMechanics() {
+            alert('🚗 Showing mobile mechanics who come to you!');
+        }
+    </script>
+</body>
+</html>

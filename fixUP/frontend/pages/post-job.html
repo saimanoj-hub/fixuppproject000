@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job - fixUP</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>fix<span>UP</span></h2>
+            </div>
+            <div class="nav-links">
+                <a href="user-home.html" class="nav-link">Home</a>
+                <a href="my-bookings.html" class="nav-link">My Bookings</a>
+                <a href="#" class="nav-link active">Post Job</a>
+                <a href="#" class="nav-link" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="post-job-container">
+        <div class="post-job-header">
+            <h1>Post a New Job 🛠️</h1>
+            <p>Describe what you need fixed and find the right professional</p>
+        </div>
+
+        <form class="post-job-form" id="postJobForm" onsubmit="handleJobPost(event)">
+            <!-- Service Selection -->
+            <div class="form-section">
+                <h3>🔧 What service do you need?</h3>
+                <div class="service-options">
+                    <div class="service-option">
+                        <input type="radio" name="service" value="carpenter" id="carpenter" required>
+                        <label for="carpenter">
+                            <span class="service-icon">🔨</span>
+                            <span class="service-name">Carpenter</span>
+                        </label>
+                    </div>
+                    <div class="service-option">
+                        <input type="radio" name="service" value="plumber" id="plumber">
+                        <label for="plumber">
+                            <span class="service-icon">🚰</span>
+                            <span class="service-name">Plumber</span>
+                        </label>
+                    </div>
+                    <div class="service-option">
+                        <input type="radio" name="service" value="electrician" id="electrician">
+                        <label for="electrician">
+                            <span class="service-icon">⚡</span>
+                            <span class="service-name">Electrician</span>
+                        </label>
+                    </div>
+                    <div class="service-option">
+                        <input type="radio" name="service" value="mechanic" id="mechanic">
+                        <label for="mechanic">
+                            <span class="service-icon">🔧</span>
+                            <span class="service-name">Mechanic</span>
+                        </label>
+                    </div>
+                    <div class="service-option">
+                        <input type="radio" name="service" value="painter" id="painter">
+                        <label for="painter">
+                            <span class="service-icon">🎨</span>
+                            <span class="service-name">Painter</span>
+                        </label>
+                    </div>
+                    <div class="service-option">
+                        <input type="radio" name="service" value="constructor" id="constructor">
+                        <label for="constructor">
+                            <span class="service-icon">🏗️</span>
+                            <span class="service-name">Constructor</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Details -->
+            <div class="form-section">
+                <h3>📝 Job Details</h3>
+                <div class="form-group">
+                    <label for="jobTitle">Job Title *</label>
+                    <input type="text" id="jobTitle" placeholder="e.g., Kitchen Cabinet Repair" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="jobDescription">Description *</label>
+                    <textarea id="jobDescription" placeholder="Describe what needs to be fixed..." rows="4" required></textarea>
+                    <div class="char-count"><span id="charCount">0</span>/500 characters</div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="urgency">Urgency</label>
+                        <select id="urgency">
+                            <option value="low">Low - Within a week</option>
+                            <option value="medium" selected>Medium - Within 3 days</option>
+                            <option value="high">High - As soon as possible</option>
+                            <option value="emergency">Emergency - Today</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="budget">Budget ($)</label>
+                        <input type="number" id="budget" placeholder="e.g., 120" min="0">
+                        <div class="input-hint">Leave empty for quotes</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location & Contact -->
+            <div class="form-section">
+                <h3>📍 Location & Contact</h3>
+                <div class="form-group">
+                    <label for="address">Address *</label>
+                    <input type="text" id="address" placeholder="Enter your address" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="preferredDate">Preferred Date</label>
+                        <input type="date" id="preferredDate">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="preferredTime">Preferred Time</label>
+                        <select id="preferredTime">
+                            <option value="">Any time</option>
+                            <option value="morning">Morning (8AM - 12PM)</option>
+                            <option value="afternoon">Afternoon (12PM - 5PM)</option>
+                            <option value="evening">Evening (5PM - 8PM)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactPhone">Contact Phone</label>
+                    <input type="tel" id="contactPhone" placeholder="Your phone number for updates">
+                </div>
+            </div>
+
+            <!-- Photo Upload -->
+            <div class="form-section">
+                <h3>📸 Add Photos (Optional)</h3>
+                <div class="photo-upload">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">📁</div>
+                        <p>Click to upload photos of the issue</p>
+                        <small>Supports JPG, PNG - Max 5MB each</small>
+                        <input type="file" id="photoUpload" multiple accept="image/*" style="display: none;">
+                    </div>
+                    <div class="upload-preview" id="uploadPreview"></div>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="form-actions">
+                <button type="button" class="btn-secondary" onclick="goBack()">← Cancel</button>
+                <button type="submit" class="btn-primary">Post Job 🚀</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="../js/post-job-script.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('fixUP_user');
+            window.location.href = '../index.html';
+        }
+        
+        function goBack() {
+            window.history.back();
+        }
+        
+        // Check authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = localStorage.getItem('fixUP_user');
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>
