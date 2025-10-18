@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings - fixUP</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>fix<span>UP</span></h2>
+            </div>
+            <div class="nav-links">
+                <a href="user-home.html" class="nav-link">Home</a>
+                <a href="#" class="nav-link active">My Bookings</a>
+                <a href="#" class="nav-link" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="bookings-container">
+        <div class="bookings-header">
+            <h1>My Bookings</h1>
+            <p>Track your service requests and appointments</p>
+        </div>
+
+        <!-- Booking Tabs -->
+        <div class="booking-tabs">
+            <button class="tab-btn active" onclick="showTab('upcoming')">📅 Upcoming</button>
+            <button class="tab-btn" onclick="showTab('active')">🔄 Active</button>
+            <button class="tab-btn" onclick="showTab('completed')">✅ Completed</button>
+            <button class="tab-btn" onclick="showTab('cancelled')">❌ Cancelled</button>
+        </div>
+
+        <!-- Upcoming Bookings -->
+        <div class="tab-content active" id="upcoming">
+            <div class="bookings-list" id="upcomingBookings">
+                <!-- Upcoming bookings will load here -->
+            </div>
+        </div>
+
+        <!-- Active Bookings -->
+        <div class="tab-content" id="active">
+            <div class="bookings-list" id="activeBookings">
+                <!-- Active bookings will load here -->
+            </div>
+        </div>
+
+        <!-- Completed Bookings -->
+        <div class="tab-content" id="completed">
+            <div class="bookings-list" id="completedBookings">
+                <!-- Completed bookings will load here -->
+            </div>
+        </div>
+
+        <!-- Cancelled Bookings -->
+        <div class="tab-content" id="cancelled">
+            <div class="bookings-list" id="cancelledBookings">
+                <!-- Cancelled bookings will load here -->
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+            <div class="empty-icon">📋</div>
+            <h3>No bookings yet</h3>
+            <p>When you book a service, it will appear here</p>
+            <a href="user-home.html" class="btn-primary">Find Services</a>
+        </div>
+    </div>
+
+    <script src="../js/bookings-script.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('fixUP_user');
+            window.location.href = '../index.html';
+        }
+        
+        // Check authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = localStorage.getItem('fixUP_user');
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>

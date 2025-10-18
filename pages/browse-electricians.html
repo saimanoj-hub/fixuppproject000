@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricians - fixUP</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="service-electrician">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>fix<span>UP</span></h2>
+            </div>
+            <div class="nav-links">
+                <a href="user-home.html" class="nav-link">← Back to Home</a>
+                <a href="my-bookings.html" class="nav-link">My Bookings</a>
+                <a href="#" class="nav-link" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="service-browse-container">
+        <!-- Service Header -->
+        <div class="service-header">
+            <div class="service-hero">
+                <div class="service-icon">⚡</div>
+                <div class="service-info">
+                    <h1>Top Electricians</h1>
+                    <p>Certified professionals for wiring, fixtures, and electrical repairs</p>
+                    <div class="service-stats">
+                        <span class="stat">🌟 4.8 Average Rating</span>
+                        <span class="stat">✅ 94% Completion Rate</span>
+                        <span class="stat">⚡ 2.2hr Average Response</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <button class="quick-btn" onclick="postElectricianJob()">
+                <span class="btn-icon">📝</span>
+                <span class="btn-text">Post Electrical Job</span>
+            </button>
+            <button class="quick-btn" onclick="showEmergencyElectricians()">
+                <span class="btn-icon">🚨</span>
+                <span class="btn-text">Electrical Emergency</span>
+            </button>
+        </div>
+
+        <!-- Filters & Search -->
+        <div class="filters-section">
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search electricians by skill..." id="searchInput">
+                <button class="search-btn">Search</button>
+            </div>
+            
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <label>Sort by:</label>
+                    <select class="filter-select" onchange="sortElectricians(this.value)">
+                        <option value="rating">Highest Rated</option>
+                        <option value="experience">Most Experienced</option>
+                        <option value="price">Best Price</option>
+                        <option value="distance">Nearest</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Price range:</label>
+                    <select class="filter-select" onchange="filterByPrice(this.value)">
+                        <option value="all">Any Price</option>
+                        <option value="70">Under $70/hr</option>
+                        <option value="140">$70-$140/hr</option>
+                        <option value="200">Over $140/hr</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Experience:</label>
+                    <select class="filter-select" onchange="filterByExperience(this.value)">
+                        <option value="all">Any Experience</option>
+                        <option value="5">5+ years</option>
+                        <option value="10">10+ years</option>
+                        <option value="15">15+ years</option>
+                    </select>
+                </div>
+                
+                <button class="filter-btn" onclick="toggleAdvancedFilters()">⚙️ More Filters</button>
+            </div>
+
+            <!-- Advanced Filters -->
+            <div class="advanced-filters" id="advancedFilters" style="display: none;">
+                <div class="filter-grid">
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="wiring"> Electrical Wiring
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="fixtures"> Light Fixtures
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="outlets"> Outlets & Switches
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="panel"> Panel Upgrade
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="troubleshooting"> Troubleshooting
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="availability" value="emergency"> Emergency Service
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="availability" value="weekend"> Weekend Available
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="certification" value="licensed"> Licensed Only
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Electricians Grid -->
+        <div class="workers-grid" id="electriciansGrid">
+            <!-- Electricians will be loaded here -->
+        </div>
+
+        <!-- Load More -->
+        <div class="load-more-section">
+            <button class="load-more-btn" onclick="loadMoreElectricians()">
+                Load More Electricians
+            </button>
+        </div>
+    </div>
+    <!-- Floating Message Button -->
+<div class="floating-message-btn" onclick="goToMessages()">
+    💬
+</div>
+
+<style>
+.floating-message-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--primary-gradient);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.floating-message-btn:hover {
+    transform: scale(1.1);
+}
+</style>
+
+<script>
+function goToMessages() {
+    window.location.href = 'chat-list.html';
+}
+</script>
+
+    <script src="../js/electricians-script.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('fixUP_user');
+            window.location.href = '../index.html';
+        }
+        
+        function postElectricianJob() {
+            window.location.href = 'post-job.html?service=electrician';
+        }
+        
+        function showEmergencyElectricians() {
+            alert('🚨 Showing electricians available for electrical emergencies!');
+        }
+    </script>
+</body>
+</html>

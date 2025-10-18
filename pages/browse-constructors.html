@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructors - fixUP</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="service-constructor">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>fix<span>UP</span></h2>
+            </div>
+            <div class="nav-links">
+                <a href="user-home.html" class="nav-link">← Back to Home</a>
+                <a href="my-bookings.html" class="nav-link">My Bookings</a>
+                <a href="#" class="nav-link" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="service-browse-container">
+        <!-- Service Header -->
+        <div class="service-header">
+            <div class="service-hero">
+                <div class="service-icon">🏗️</div>
+                <div class="service-info">
+                    <h1>Top Constructors</h1>
+                    <p>Professional builders for renovations, repairs, and construction projects</p>
+                    <div class="service-stats">
+                        <span class="stat">🌟 4.7 Average Rating</span>
+                        <span class="stat">✅ 89% Completion Rate</span>
+                        <span class="stat">⚡ 4hr Average Response</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <button class="quick-btn" onclick="postConstructorJob()">
+                <span class="btn-icon">📝</span>
+                <span class="btn-text">Post Construction Job</span>
+            </button>
+            <button class="quick-btn" onclick="showRenovationSpecialists()">
+                <span class="btn-icon">🛠️</span>
+                <span class="btn-text">Renovation Experts</span>
+            </button>
+            <button class="quick-btn" onclick="showSmallProjects()">
+                <span class="btn-icon">📐</span>
+                <span class="btn-text">Small Projects</span>
+            </button>
+        </div>
+
+        <!-- Filters & Search -->
+        <div class="filters-section">
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search constructors by specialty..." id="searchInput">
+                <button class="search-btn">Search</button>
+            </div>
+            
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <label>Sort by:</label>
+                    <select class="filter-select" onchange="sortConstructors(this.value)">
+                        <option value="rating">Highest Rated</option>
+                        <option value="experience">Most Experienced</option>
+                        <option value="price">Best Price</option>
+                        <option value="distance">Nearest</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Price range:</label>
+                    <select class="filter-select" onchange="filterByPrice(this.value)">
+                        <option value="all">Any Price</option>
+                        <option value="70">Under $70/hr</option>
+                        <option value="140">$70-$140/hr</option>
+                        <option value="200">Over $140/hr</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Experience:</label>
+                    <select class="filter-select" onchange="filterByExperience(this.value)">
+                        <option value="all">Any Experience</option>
+                        <option value="5">5+ years</option>
+                        <option value="10">10+ years</option>
+                        <option value="15">15+ years</option>
+                    </select>
+                </div>
+                
+                <button class="filter-btn" onclick="toggleAdvancedFilters()">⚙️ More Filters</button>
+            </div>
+
+            <!-- Advanced Filters -->
+            <div class="advanced-filters" id="advancedFilters" style="display: none;">
+                <div class="filter-grid">
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="renovation"> Home Renovation
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="repair"> Structural Repair
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="remodeling"> Remodeling
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="additions"> Room Additions
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="foundation"> Foundation Work
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="specialty" value="deck"> Deck & Patio
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="project_size" value="small"> Small Projects
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="project_size" value="large"> Large Projects
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="availability" value="weekend"> Weekend Available
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <label>
+                            <input type="checkbox" name="certification" value="licensed"> Licensed Only
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Constructors Grid -->
+        <div class="workers-grid" id="constructorsGrid">
+            <!-- Constructors will be loaded here -->
+        </div>
+
+        <!-- Load More -->
+        <div class="load-more-section">
+            <button class="load-more-btn" onclick="loadMoreConstructors()">
+                Load More Constructors
+            </button>
+        </div>
+    </div><!-- Floating Message Button -->
+<div class="floating-message-btn" onclick="goToMessages()">
+    💬
+</div>
+
+<style>
+.floating-message-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--primary-gradient);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.floating-message-btn:hover {
+    transform: scale(1.1);
+}
+</style>
+
+<script>
+function goToMessages() {
+    window.location.href = 'chat-list.html';
+}
+</script>
+
+    <script src="../js/constructors-script.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('fixUP_user');
+            window.location.href = '../index.html';
+        }
+        
+        function postConstructorJob() {
+            window.location.href = 'post-job.html?service=constructor';
+        }
+        
+        function showRenovationSpecialists() {
+            alert('🛠️ Showing renovation and remodeling experts!');
+        }
+        
+        function showSmallProjects() {
+            alert('📐 Showing constructors for small projects!');
+        }
+    </script>
+</body>
+</html>

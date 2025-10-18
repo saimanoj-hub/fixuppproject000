@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mike Carpenter - fixUP</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>fix<span>UP</span></h2>
+            </div>
+            <div class="nav-links">
+                <a href="browse-services.html" class="nav-link">← Back to Browse</a>
+                <a href="user-home.html" class="nav-link">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="profile-container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-hero">
+                <div class="profile-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Mike Carpenter">
+                    <div class="verified-badge">✅ Verified</div>
+                </div>
+                <div class="profile-info">
+                    <h1>Mike Carpenter</h1>
+                    <p class="profile-tagline">Master Carpenter with 15+ years experience</p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <span class="rating-stars">★★★★★</span>
+                            <span class="rating-text">4.8 (124 reviews)</span>
+                        </div>
+                        <div class="stat">
+                            <span class="jobs-completed">✅ 89 jobs completed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="response-time">⚡ Responds in 2 hours</span>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn-primary" onclick="contactWorker()">📞 Contact Mike</button>
+                        <button class="btn-secondary" onclick="messageWorker()">💬 Message</button>
+                        <button class="btn-secondary" onclick="bookAppointment()">📅 Book Appointment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Content -->
+        <div class="profile-content">
+            <!-- Left Column -->
+            <div class="profile-main">
+                <!-- About Section -->
+                <section class="profile-section">
+                    <h2>About Me</h2>
+                    <p>Specialized in custom furniture, cabinet making, and home renovations. I take pride in delivering high-quality craftsmanship with attention to detail. Let's bring your vision to life!</p>
+                </section>
+
+                <!-- Services Section -->
+                <section class="profile-section">
+                    <h2>Services Offered</h2>
+                    <div class="services-list">
+                        <div class="service-item">🪑 Custom Furniture</div>
+                        <div class="service-item">🚪 Cabinet Installation</div>
+                        <div class="service-item">🏠 Home Renovations</div>
+                        <div class="service-item">🔨 Furniture Repair</div>
+                        <div class="service-item">📐 Custom Woodworking</div>
+                        <div class="service-item">🎨 Finish Carpentry</div>
+                    </div>
+                </section>
+
+                <!-- Portfolio Section -->
+                <section class="profile-section">
+                    <h2>Portfolio</h2>
+                    <div class="portfolio-grid">
+                        <div class="portfolio-item">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=200&fit=crop" alt="Custom Table">
+                        </div>
+                        <div class="portfolio-item">
+                            <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=300&h=200&fit=crop" alt="Kitchen Cabinets">
+                        </div>
+                        <div class="portfolio-item">
+                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=300&h=200&fit=crop" alt="Woodworking">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reviews Section -->
+                <section class="profile-section">
+                    <h2>Reviews & Ratings</h2>
+                    <div class="reviews-list" id="reviewsList">
+                        <!-- Reviews loaded by JavaScript -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column - Sidebar -->
+            <div class="profile-sidebar">
+                <!-- Pricing Card -->
+                <div class="pricing-card">
+                    <h3>💰 Pricing</h3>
+                    <div class="price-item">
+                        <span>Hourly Rate</span>
+                        <span class="price">$75/hr</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Minimum Charge</span>
+                        <span class="price">$50</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Travel Fee</span>
+                        <span class="price">$20</span>
+                    </div>
+                    <button class="btn-primary full-width" onclick="bookAppointment()">Book Now</button>
+                </div>
+
+                <!-- Contact Card -->
+                <div class="contact-card">
+                    <h3>📞 Contact Info</h3>
+                    <div class="contact-item">
+                        <span>📍 Location:</span>
+                        <span>Downtown Area</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>🕒 Response Time:</span>
+                        <span>Within 2 hours</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>✅ Verified:</span>
+                        <span>ID & Background</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/profile-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Plans - fixUP</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>fix<span>UP</span></h2>
+            </div>
+            <div class="nav-links">
+                <a href="worker-home.html" class="nav-link">← Back to Dashboard</a>
+                <a href="#" class="nav-link" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="membership-container">
+        <div class="membership-header">
+            <h1>🚀 Boost Your Business</h1>
+            <p>Choose the perfect plan to get more clients and grow your income</p>
+            <div class="billing-toggle">
+                <span>Monthly</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="billingToggle" onchange="toggleBilling()">
+                    <span class="slider"></span>
+                </label>
+                <span>Yearly <span class="discount-badge">Save 20%</span></span>
+            </div>
+        </div>
+
+        <!-- Membership Plans -->
+        <div class="plans-grid" id="plansGrid">
+            <!-- Plans will be loaded here -->
+        </div>
+
+        <!-- Features Comparison -->
+        <div class="features-comparison">
+            <h2>Compare Plans</h2>
+            <div class="features-table">
+                <div class="feature-header">
+                    <div class="feature-name">Features</div>
+                    <div class="feature-plan">Free</div>
+                    <div class="feature-plan">Starter</div>
+                    <div class="feature-plan">Pro</div>
+                </div>
+                
+                <div class="feature-row">
+                    <div class="feature-name">Job Applications</div>
+                    <div class="feature-plan">3/month</div>
+                    <div class="feature-plan">Unlimited</div>
+                    <div class="feature-plan">Unlimited</div>
+                </div>
+                
+                <div class="feature-row">
+                    <div class="feature-name">Profile Visibility</div>
+                    <div class="feature-plan">⭐ Basic</div>
+                    <div class="feature-plan">⭐⭐ Medium</div>
+                    <div class="feature-plan">⭐⭐⭐ High</div>
+                </div>
+                
+                <div class="feature-row">
+                    <div class="feature-name">Direct Messages</div>
+                    <div class="feature-plan">❌ Limited</div>
+                    <div class="feature-plan">✅ Unlimited</div>
+                    <div class="feature-plan">✅ Unlimited</div>
+                </div>
+                
+                <div class="feature-row">
+                    <div class="feature-name">Portfolio Items</div>
+                    <div class="feature-plan">5</div>
+                    <div class="feature-plan">20</div>
+                    <div class="feature-plan">Unlimited</div>
+                </div>
+                
+                <div class="feature-row">
+                    <div class="feature-name">Verified Badge</div>
+                    <div class="feature-plan">❌</div>
+                    <div class="feature-plan">✅</div>
+                    <div class="feature-plan">✅</div>
+                </div>
+                
+                <div class="feature-row">
+                    <div class="feature-name">Priority Support</div>
+                    <div class="feature-plan">❌</div>
+                    <div class="feature-plan">❌</div>
+                    <div class="feature-plan">✅ 24/7</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>❓ Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">Can I cancel anytime?</div>
+                    <div class="faq-answer">Yes! Cancel your subscription anytime with no hidden fees.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is there a free trial?</div>
+                    <div class="faq-answer">All paid plans come with a 7-day free trial. No credit card required!</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How do payments work?</div>
+                    <div class="faq-answer">We accept all major credit cards. Payments are secure and encrypted.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/membership-script.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('fixUP_user');
+            window.location.href = '../index.html';
+        }
+    </script>
+</body>
+</html>

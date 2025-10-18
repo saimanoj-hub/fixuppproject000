@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - fixUP</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <!-- Back Button -->
+        <a href="../index.html" class="back-btn">← Back to Home</a>
+
+        <!-- Login Card -->
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Welcome Back! 👋</h1>
+                <p>Sign in to your fixUP account</p>
+            </div>
+
+            <form class="auth-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <div class="forgot-password">
+                        <a href="#">Forgot password?</a>
+                    </div>
+                </div>
+
+                <button type="submit" class="auth-btn">Sign In</button>
+            </form>
+
+            <div class="auth-divider">
+                <span>or continue with</span>
+            </div>
+
+            <div class="social-auth">
+                <button class="social-btn google-btn">
+                    <span>🔍</span> Continue with Google
+                </button>
+                <button class="social-btn facebook-btn">
+                    <span>📘</span> Continue with Facebook
+                </button>
+            </div>
+
+            <div class="auth-footer">
+                Don't have an account? <a href="register.html">Sign up now</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/auth-script.js"></script>
+</body>
+</html>
